@@ -1,0 +1,681 @@
+<!-- ALCYONEUS SUPERCLUSTER | Advanced Chess.com Sidebar
+     Paste into your Chess.com club sidebar's HTML editor.
+     Built with HTML, CSS and JavaScript. -->
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000000 !important;
+    color-scheme: dark;
+  }
+</style>
+<div id="alcyoneus-sidebar">
+  <style>
+    #alcyoneus-sidebar {
+      --bg:#000000; --panel:#060a12; --panel2:#0a111d; --cyan:#00eaff;
+      --cyan-soft:rgba(0,234,255,.16); --text:#f4fbff; --muted:#9aafc2;
+      --line:rgba(0,234,255,.24); --radius:14px;
+      --frame-dark:#081c3a; --frame-mid:#0d2b57;
+      width:100%; max-width:292px; margin:0 auto; padding:11px;
+      box-sizing:border-box; color:var(--text);
+      background:#000000;
+      border:5px solid var(--frame-dark);
+      outline:2px solid var(--frame-mid);
+      outline-offset:0;
+      border-radius:22px;
+      font:13px/1.5 "Segoe UI",Arial,sans-serif;
+      box-shadow:
+        inset 0 0 0 1px rgba(0,234,255,.32),
+        inset 0 0 24px rgba(0,234,255,.05),
+        0 0 0 2px #000000,
+        0 10px 28px rgba(0,0,0,.9),
+        0 0 22px rgba(0,234,255,.14);
+      overflow:hidden;
+    }
+    #alcyoneus-sidebar *{box-sizing:border-box}
+    #alcyoneus-sidebar a{color:inherit}
+    /* Pure-CSS Theme Toggle Support (works even if Chess.com strips JS) */
+    #alcyoneus-sidebar:has(#as-theme-chk:checked),
+    #alcyoneus-sidebar.as-theme-alt{
+      --bg:#000000;--panel:#08121a;--panel2:#0e1e2b;--cyan:#9bffdc;
+      --cyan-soft:rgba(155,255,220,.15);--line:rgba(155,255,220,.25);
+      --frame-dark:#0a2538;--frame-mid:#144363;
+    }
+    #alcyoneus-sidebar .as-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+    #alcyoneus-sidebar .as-brand{font-weight:900;letter-spacing:1.8px;font-size:12px;color:var(--cyan)}
+    #alcyoneus-sidebar .as-live{font-size:9px;letter-spacing:1px;color:#7dffbe;border:1px solid rgba(125,255,190,.35);padding:3px 7px;border-radius:30px;white-space:nowrap}
+    #alcyoneus-sidebar .as-live:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#7dffbe;margin-right:5px;box-shadow:0 0 8px #7dffbe}
+    /* Double-bordered Marquee Banner (continuous medium-speed scroll, never stops on hover) */
+    #alcyoneus-sidebar .as-banner{
+      position:relative;overflow:hidden;padding:11px 0;margin:2px 2px 14px;
+      font-size:11.5px;font-weight:900;letter-spacing:1.7px;color:#001017;
+      background:linear-gradient(100deg,#00bcd4,#e8ffff,#00bcd4);
+      border:2px solid #041322;
+      outline:2px solid var(--cyan);
+      outline-offset:1px;
+      border-radius:11px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 4px 14px rgba(0,234,255,.22);
+      transition:transform .25s ease,box-shadow .25s ease,filter .25s ease,outline-color .25s ease;
+    }
+    #alcyoneus-sidebar .as-banner:hover{
+      transform:translateY(-2px) scale(1.015);
+      outline-color:#ffffff;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.8),0 0 22px rgba(0,234,255,.65);
+      filter:brightness(1.07);
+    }
+    #alcyoneus-sidebar .as-marquee-track{
+      display:flex;width:max-content;
+      animation:as-scroll-left 11s linear infinite;
+    }
+    #alcyoneus-sidebar .as-marquee-track span{
+      display:inline-block;padding-right:28px;white-space:nowrap;
+    }
+    @keyframes as-scroll-left{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-50%)}
+    }
+    #alcyoneus-sidebar .as-card{background:linear-gradient(145deg,rgba(16,29,44,.97),rgba(5,10,18,.98));border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:var(--radius);padding:13px;margin:0 0 11px;box-shadow:0 5px 18px rgba(0,0,0,.22);transition:transform .2s,border-color .2s,box-shadow .2s}
+    #alcyoneus-sidebar .as-card:hover{transform:translateY(-2px);border-color:rgba(0,234,255,.55);box-shadow:0 7px 22px rgba(0,234,255,.10)}
+    #alcyoneus-sidebar .as-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+    #alcyoneus-sidebar .as-sub{color:var(--muted);font-size:10px}
+    #alcyoneus-sidebar .as-owner{text-align:center}
+    #alcyoneus-sidebar .as-image-card{position:relative;overflow:hidden;margin:10px auto 8px;padding:7px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,rgba(0,234,255,.10),rgba(5,10,18,.96));box-shadow:0 6px 18px rgba(0,0,0,.28),0 0 14px rgba(0,234,255,.08)}
+    #alcyoneus-sidebar .as-image-card img{display:block;width:100%;height:150px;object-fit:cover;border-radius:8px;transition:transform .35s ease,filter .35s ease}
+    #alcyoneus-sidebar .as-image-card:hover img{transform:scale(1.045);filter:saturate(1.12)}
+    #alcyoneus-sidebar .as-image-caption{padding:7px 4px 2px;color:var(--cyan);font-size:9px;font-weight:900;letter-spacing:1.4px;text-align:center;text-transform:uppercase}
+    #alcyoneus-sidebar .as-owner .as-image-card{max-width:170px}
+    #alcyoneus-sidebar .as-owner .as-image-card img{height:145px;object-fit:cover}
+    #alcyoneus-sidebar .as-logo-card{max-width:220px}
+    #alcyoneus-sidebar .as-logo-card img{height:125px;object-fit:contain;background:#07111d}
+    #alcyoneus-sidebar .as-handle{font-size:17px;font-weight:900;letter-spacing:.6px}
+    #alcyoneus-sidebar .as-handle a{text-decoration:none}
+    #alcyoneus-sidebar .as-handle a:hover{color:var(--cyan)}
+    /* Glowing Club Title & Marquee Subheader */
+    #alcyoneus-sidebar .as-title{font-size:18px;line-height:1.25;text-align:center;font-weight:900;letter-spacing:1.4px;color:#ffffff;text-shadow:0 0 12px rgba(0,234,255,.65);margin:2px 0 10px}
+    #alcyoneus-sidebar .as-title span{color:var(--cyan)}
+    #alcyoneus-sidebar .as-sub-marquee{overflow:hidden;margin:0 0 12px;padding:5px 0;border-top:1px solid rgba(0,234,255,.14);border-bottom:1px solid rgba(0,234,255,.14)}
+    #alcyoneus-sidebar .as-sub-marquee-track{display:flex;width:max-content;animation:as-scroll-left 13s linear infinite}
+    #alcyoneus-sidebar .as-sub-marquee-track span{font-size:11.5px;font-weight:700;color:#ffffff;text-shadow:0 0 10px rgba(0,234,255,.55);padding-right:26px;white-space:nowrap}
+    #alcyoneus-sidebar .as-desc-box{margin:10px 0 4px;padding:11px 10px;background:rgba(0,234,255,.04);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0}
+    #alcyoneus-sidebar .as-copy{color:#c9d6e8;text-align:center;font-size:11.5px;line-height:1.55;margin:0}
+    #alcyoneus-sidebar .as-copy strong{color:#ffffff}
+    #alcyoneus-sidebar .as-clock{font-size:23px;font-weight:900;text-align:center;letter-spacing:2px;color:#fff}
+    #alcyoneus-sidebar .as-date{text-align:center;color:var(--muted);font-size:10px}
+    #alcyoneus-sidebar .as-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+    #alcyoneus-sidebar .as-action{display:block;text-align:center;text-decoration:none!important;padding:9px 6px;border:1px solid var(--line);border-radius:9px;background:rgba(0,234,255,.045);font-size:10px;font-weight:800;transition:.2s}
+    #alcyoneus-sidebar .as-action:hover{background:var(--cyan-soft);border-color:var(--cyan);transform:translateY(-1px)}
+    #alcyoneus-sidebar .as-list{display:flex;flex-direction:column;gap:6px}
+    #alcyoneus-sidebar .as-link{display:flex;align-items:center;justify-content:space-between;gap:8px;text-decoration:none!important;padding:8px 9px;border:1px solid rgba(0,234,255,.12);border-radius:8px;background:rgba(255,255,255,.025);font-size:10px;font-weight:800;transition:.18s}
+    #alcyoneus-sidebar .as-link:hover{padding-left:13px;background:var(--cyan-soft);border-color:var(--line)}
+    #alcyoneus-sidebar .as-link small{color:var(--muted);font-weight:500;flex-shrink:0}
+    #alcyoneus-sidebar .as-search{width:100%;background:#050c15;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px;font-size:11px;outline:none;margin-bottom:8px}
+    #alcyoneus-sidebar .as-search:focus{border-color:var(--cyan);box-shadow:0 0 0 2px var(--cyan-soft)}
+    #alcyoneus-sidebar .as-btn{display:inline-block;text-align:center;cursor:pointer;width:100%;border:1px solid var(--cyan);border-radius:30px;padding:9px 12px;background:transparent;color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;transition:.2s;user-select:none}
+    #alcyoneus-sidebar .as-btn:hover{background:var(--cyan);color:#001017;box-shadow:0 0 15px var(--cyan-soft)}
+    #alcyoneus-sidebar .as-btn.secondary{border-color:rgba(255,255,255,.2);color:#dceaf4}
+    #alcyoneus-sidebar .as-btn.secondary:hover{background:#dceaf4;color:#07111d}
+    #alcyoneus-sidebar .as-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    #alcyoneus-sidebar .as-pill{font-size:9px;padding:3px 7px;border-radius:20px;background:var(--cyan-soft);color:var(--cyan);font-weight:800;white-space:nowrap}
+    #alcyoneus-sidebar .as-member{display:flex;align-items:center;justify-content:space-between;padding:8px 9px;margin:6px 0 0;border-radius:8px;background:#0b1724;border:1px solid rgba(255,255,255,.06);text-decoration:none!important;transition:.18s}
+    #alcyoneus-sidebar .as-member:hover{border-color:var(--line);background:#0f2032}
+    #alcyoneus-sidebar .as-rank{font-size:9px;font-weight:900;padding:3px 6px;border-radius:5px;background:#173b42;color:#70f5df;margin-right:7px}
+    #alcyoneus-sidebar .as-member-name{font-size:10px;font-weight:800}
+    #alcyoneus-sidebar .as-partners{display:flex;flex-direction:column;gap:6px;max-height:230px;overflow:auto;padding-right:3px}
+    #alcyoneus-sidebar .as-partners::-webkit-scrollbar{width:4px}
+    #alcyoneus-sidebar .as-partners::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+    #alcyoneus-sidebar details.as-fold{border:1px solid rgba(0,234,255,.15);border-radius:9px;margin:6px 0;background:rgba(0,0,0,.12)}
+    #alcyoneus-sidebar details.as-fold summary{cursor:pointer;list-style:none;padding:9px;font-size:10px;font-weight:900;color:#eafaff}
+    #alcyoneus-sidebar details.as-fold summary::-webkit-details-marker{display:none}
+    #alcyoneus-sidebar details.as-fold summary:after{content:"＋";float:right;color:var(--cyan)}
+    #alcyoneus-sidebar details.as-fold[open] summary:after{content:"－"}
+    #alcyoneus-sidebar .as-fold-body{padding:0 9px 10px;color:#b9cad8;font-size:10px}
+    #alcyoneus-sidebar .as-quote{font-size:12px;font-weight:800;text-align:center;color:#fff;margin:0 0 9px}
+    #alcyoneus-sidebar .as-invite-box{width:100%;background:#050c15;color:var(--cyan);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:9.5px;text-align:center;margin-bottom:8px;outline:none}
+    #alcyoneus-sidebar .as-empty{text-align:center;color:var(--muted);font-size:10px;padding:8px 0}
+    /* Birthday Book Widget */
+    #alcyoneus-sidebar .as-bday-form{display:flex;flex-direction:column;gap:6px;margin-bottom:9px}
+    #alcyoneus-sidebar .as-bday-row{display:flex;gap:6px}
+    #alcyoneus-sidebar .as-bday-row .as-search{margin-bottom:0;flex:1}
+    #alcyoneus-sidebar .as-bday-date{background:#050c15;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 8px;font-size:10px;outline:none;color-scheme:dark}
+    #alcyoneus-sidebar .as-bday-date:focus{border-color:var(--cyan);box-shadow:0 0 0 2px var(--cyan-soft)}
+    #alcyoneus-sidebar .as-bday-list{display:flex;flex-direction:column;gap:7px;max-height:240px;overflow-y:auto;padding-right:2px}
+    #alcyoneus-sidebar .as-bday-list::-webkit-scrollbar{width:4px}
+    #alcyoneus-sidebar .as-bday-list::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+    #alcyoneus-sidebar .as-bday-item{display:flex;align-items:center;gap:9px;padding:8px;border-radius:9px;background:#091422;border:1px solid rgba(0,234,255,.16);transition:.18s}
+    #alcyoneus-sidebar .as-bday-item:hover{border-color:var(--cyan);background:#0d1d30}
+    #alcyoneus-sidebar .as-bday-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan);background:#050c15;flex-shrink:0}
+    #alcyoneus-sidebar .as-bday-meta{flex:1;min-width:0}
+    #alcyoneus-sidebar .as-bday-user{font-size:10.5px;font-weight:900;color:#ffffff;text-decoration:none!important;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    #alcyoneus-sidebar .as-bday-user:hover{color:var(--cyan)}
+    #alcyoneus-sidebar .as-bday-sub{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    #alcyoneus-sidebar .as-bday-timer{font-size:9.5px;font-weight:900;color:var(--cyan);margin-top:2px;font-variant-numeric:tabular-nums}
+    #alcyoneus-sidebar .as-bday-del{cursor:pointer;border:1px solid rgba(255,255,255,.15);background:transparent;color:var(--muted);border-radius:6px;padding:3px 6px;font-size:9px;font-weight:800;flex-shrink:0}
+    #alcyoneus-sidebar .as-bday-del:hover{border-color:#ff7b7b;color:#ff9e9e}
+    #alcyoneus-sidebar .as-foot{text-align:center;border-top:1px solid rgba(0,234,255,.16);padding-top:11px;color:var(--muted);font-size:9px;letter-spacing:.5px}
+    #alcyoneus-sidebar .as-toast{min-height:14px;text-align:center;color:#7dffbe;font-size:10px;margin-top:6px}
+    #alcyoneus-sidebar .as-hidden{display:none!important}
+    @media(prefers-reduced-motion:reduce){#alcyoneus-sidebar *{transition:none!important;animation:none!important}}
+  </style>
+
+  <input type="checkbox" id="as-theme-chk" class="as-hidden" aria-hidden="true" />
+
+  <div class="as-top">
+    <div class="as-brand">♜ ALCYONEUS // COMMAND</div>
+    <div class="as-live">SYSTEM ONLINE</div>
+  </div>
+  <div class="as-banner" aria-label="Universal Chess, Tournaments, Community">
+    <div class="as-marquee-track">
+      <span>✦ UNIVERSAL CHESS • TOURNAMENTS • COMMUNITY ✦</span>
+      <span aria-hidden="true">✦ UNIVERSAL CHESS • TOURNAMENTS • COMMUNITY ✦</span>
+    </div>
+  </div>
+
+  <section class="as-card as-owner">
+    <div class="as-heading"><span>👑 Galaxy Centre</span><span class="as-pill">FOUNDER</span></div>
+    <div class="as-handle"><a href="https://www.chess.com/member/elitebacon09" target="_blank" rel="noopener">@ELITEBACON09</a></div>
+    <div class="as-image-card">
+      <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Messier_Sidebars/php7e3edp76cn231jFJsvq.png" alt="Club owner avatar" />
+      <div class="as-image-caption">Galaxy Centre • Founder</div>
+    </div>
+    <div class="as-sub">CLUB OWNER • ALCYONEUS SUPERCLUSTER</div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-title">ALCYONEUS <span>SUPERCLUSTER</span></div>
+    <div class="as-sub-marquee" aria-label="Universal Chess, Tournaments, Matches, Community">
+      <div class="as-sub-marquee-track">
+        <span>♟️ Universal Chess • Tournaments • Matches • Community ♟️</span>
+        <span aria-hidden="true">♟️ Universal Chess • Tournaments • Matches • Community ♟️</span>
+      </div>
+    </div>
+    <div class="as-image-card as-logo-card">
+      <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PawnBoyNerd1/phpgurms8qd4mdadsyuOR0.png" alt="Alcyoneus Supercluster logo" />
+      <div class="as-image-caption">Official Club Emblem</div>
+    </div>
+    <div class="as-copy" style="font-weight:800;color:var(--cyan);margin:4px 0 6px">Welcome on board</div>
+    <div class="as-desc-box">
+      <p class="as-copy">Welcome to <strong>ALCYONEUS SUPERCLUSTER</strong> — a premier stellar community built for chess players of all tiers. Step into our cosmos for high-stakes matches, competitive tournaments, and elite tactical training!</p>
+    </div>
+    <div style="text-align:center;margin-top:9px" class="as-sub">Inspired by <a href="https://www.chess.com/club/the-eternal" target="_blank" rel="noopener" style="color:var(--cyan)">The Eternal</a></div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🕒 Club Control Clock</span><span class="as-pill">LIVE</span></div>
+    <div class="as-clock" id="as-clock">--:--:--</div>
+    <div class="as-date" id="as-date">Local System Time</div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>⚡ Command Deck</span><span class="as-sub">QUICK ACCESS</span></div>
+    <div class="as-grid">
+      <a class="as-action" href="https://www.chess.com/clubs/events/alcyoneus-supercluster" target="_blank" rel="noopener">📅 Club Events</a>
+      <a class="as-action" href="https://www.chess.com/leaderboard/live?group=934359" target="_blank" rel="noopener">🏆 Leaderboard</a>
+      <a class="as-action" href="https://www.chess.com/club/notes/alcyoneus-supercluster" target="_blank" rel="noopener">💬 Club Notes</a>
+      <a class="as-action" href="https://www.chess.com/play/online/create-tournament/934359" target="_blank" rel="noopener">♟ Tournaments</a>
+      <a class="as-action" href="https://www.chesswrap.me" target="_blank" rel="noopener">📊 Chess Recap</a>
+      <a class="as-action" href="https://www.chess.com/clubs/forum/view/guess-the-elo-1087" target="_blank" rel="noopener">🧠 Guess The Elo</a>
+    </div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🔎 Link Finder</span><span class="as-sub">FILTER LINKS</span></div>
+    <input class="as-search" id="as-search" type="search" placeholder="Search events, notes, rules…" aria-label="Filter sidebar links" />
+    <div class="as-list" id="as-search-list">
+      <a class="as-link" data-search="events tournament calendar" href="https://www.chess.com/clubs/events/alcyoneus-supercluster" target="_blank" rel="noopener">📅 Club Events <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="leaderboard rankings players" href="https://www.chess.com/leaderboard/live?group=934359" target="_blank" rel="noopener">🏆 Leaderboard <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="club notes discussion" href="https://www.chess.com/club/notes/alcyoneus-supercluster" target="_blank" rel="noopener">💬 Club Notes <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="create tournament online arena swiss" href="https://www.chess.com/play/online/create-tournament/934359" target="_blank" rel="noopener">♟ Create Tournament <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="chess wrap recap stats" href="https://www.chesswrap.me" target="_blank" rel="noopener">📊 Chess Recap <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="advertise advertisement forum" href="https://www.chess.com/clubs/forum/view/advertisment-forum-14" target="_blank" rel="noopener">📢 Advertisement Forum <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="rules regulations" href="https://www.chess.com/announcements/view/rules-regulations-4" target="_blank" rel="noopener">📜 Club Rules <small>OPEN ↗</small></a>
+      <a class="as-link" data-search="guess elo game" href="https://www.chess.com/clubs/forum/view/guess-the-elo-1087" target="_blank" rel="noopener">🧠 Guess The Elo <small>OPEN ↗</small></a>
+    </div>
+    <div class="as-empty as-hidden" id="as-search-empty">No matching club links found.</div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🛰 Member Intelligence</span><span class="as-pill">EMBEDDED</span></div>
+    <iframe title="New club members" src="https://dannybxjhs.github.io/new-chillies-widget/?club=Alcyoneus-SuperCluster&amp;time=true" loading="lazy" style="display:block;width:100%;height:290px;border:0;border-radius:9px;background:#0a1420"></iframe>
+    <div class="as-sub" style="text-align:center;margin-top:6px">Widget credit: <a href="https://www.chess.com/member/shadoww-xd" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">@Shadoww-xd</a></div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>📡 Member Tracker</span><span class="as-pill">LIVE EMBED</span></div>
+    <iframe title="Alcyoneus member tracker" src="https://blunderingrook-collab.github.io/ALCYONEUS-MEMBER-TRACK/?club=alcyoneus-supercluster&amp;time=true" loading="lazy" scrolling="no" style="display:block;width:100%;height:720px;border:0;border-radius:9px;background:#0a1420;overflow:hidden"></iframe>
+    <div class="as-sub" style="text-align:center;margin-top:6px">Widget credit: <a href="https://www.chess.com/member/pawnboynerd1" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">@PawnBoyNerd1</a></div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>⭐ Tactical Hall of Fame</span><span class="as-pill">TITLED PLAYERS</span></div>
+    <a class="as-member" href="https://www.chess.com/member/atm622" target="_blank" rel="noopener"><span><b class="as-rank">CM</b><span class="as-member-name">@ATM622</span></span><span>🏅</span></a>
+    <a class="as-member" href="https://www.chess.com/member/chanelinmyysl" target="_blank" rel="noopener"><span><b class="as-rank" style="background:#51451a;color:#ffe58a">IM</b><span class="as-member-name">@ChanelinmyYSL</span></span><span>🏅</span></a>
+    <a class="as-member" href="https://www.chess.com/member/trimitziosp7" target="_blank" rel="noopener"><span><b class="as-rank" style="background:#163b58;color:#9bd5ff">FM</b><span class="as-member-name">@TrimitziosP7</span></span><span>🏅</span></a>
+    <div class="as-sub" style="margin-top:8px">Tactical Star of the Month</div>
+    <div class="as-row" style="margin-top:4px"><b>@User_Here</b><span class="as-pill">YOUR TURN TO SHINE</span></div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🎂 Birthday Book</span><span class="as-pill" id="as-bday-count">0 SAVED</span></div>
+    <form class="as-bday-form" id="as-bday-form">
+      <div class="as-bday-row">
+        <input class="as-search" id="as-bday-user" type="text" placeholder="Chess.com username…" aria-label="Chess.com username for birthday" required />
+        <input class="as-bday-date" id="as-bday-date" type="date" aria-label="Birthday date" required />
+      </div>
+      <button class="as-btn" type="submit" id="as-bday-submit">Save Birthday</button>
+    </form>
+    <div class="as-toast" id="as-bday-status" aria-live="polite"></div>
+    <div class="as-bday-list" id="as-bday-list" role="list" aria-label="Saved birthdays list"></div>
+    <div class="as-empty as-hidden" id="as-bday-empty">No birthdays saved yet. Add a member above!</div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🌌 Club Broadcast</span><span class="as-pill">COMMUNITY</span></div>
+    <p class="as-quote" id="as-quote">“Think boldly. Play brilliantly. Shine infinitely.”</p>
+    <div class="as-row">
+      <button class="as-btn secondary" type="button" id="as-quote-btn">Next quote</button>
+      <label class="as-btn secondary" for="as-theme-chk" id="as-theme-btn">Switch theme</label>
+    </div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🤝 Partner Network</span><span class="as-sub">11 CLUBS</span></div>
+    <div class="as-partners">
+      <a class="as-link" href="https://www.chess.com/club/united-chess-federation" target="_blank" rel="noopener">♟ United Chess Fed <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/shadow-chess-hub" target="_blank" rel="noopener">♟ Shadow Chess Hub <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/chess-backbenchers" target="_blank" rel="noopener">♟ Chess Backbenchers <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/the-great-knights" target="_blank" rel="noopener">♟ The Great Knights <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/chess-champions-army" target="_blank" rel="noopener">♟ Chess Champions Army <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/nothing-1-0" target="_blank" rel="noopener">♟ Nothing -1.0 <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/the-royal-file" target="_blank" rel="noopener">♟ The Royal File <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/chess-indian-giants" target="_blank" rel="noopener">♟ Chess Indian Giants <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/animal-chess-club-2" target="_blank" rel="noopener">♟ Animals Chess <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/magical-cat-rp" target="_blank" rel="noopener">♟ Magical Cat RP <small>↗</small></a>
+      <a class="as-link" href="https://www.chess.com/club/the-achievement-gangsters" target="_blank" rel="noopener">♟ Achievement Gangsters <small>↗</small></a>
+    </div>
+  </section>
+
+  <section class="as-card">
+    <div class="as-heading"><span>🚀 Invite More Stars</span><span class="as-pill">GROW THE GALAXY</span></div>
+    <p class="as-copy" style="margin-bottom:8px">Bring your friends into the Alcyoneus community.</p>
+    <input class="as-invite-box" id="as-invite-url" type="text" readonly value="https://www.chess.com/club/alcyoneus-supercluster/join" aria-label="Club invite URL" />
+    <button class="as-btn" type="button" id="as-copy-btn">Copy club invite link</button>
+    <div class="as-toast" id="as-toast" aria-live="polite"></div>
+  </section>
+
+  <div class="as-foot">SIDEBAR SYSTEM • MESSIER SIDEBARS<br/>ALCYONEUS SUPERCLUSTER</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+(function () {
+  const root = document.getElementById('alcyoneus-sidebar');
+  if (!root) return;
+
+  function updateClock() {
+    const now = new Date();
+    const clock = root.querySelector('#as-clock');
+    const date = root.querySelector('#as-date');
+    if (clock) clock.textContent = now.toLocaleTimeString([], {hour12:false});
+    if (date) date.textContent = now.toLocaleDateString([], {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  }
+  updateClock();
+  window.setInterval(updateClock, 1000);
+
+  const search = root.querySelector('#as-search');
+  const emptyMsg = root.querySelector('#as-search-empty');
+  if (search) {
+    search.addEventListener('input', function () {
+      const term = this.value.trim().toLowerCase();
+      let visibleCount = 0;
+      root.querySelectorAll('#as-search-list .as-link').forEach(function (link) {
+        const haystack = (link.textContent + ' ' + (link.dataset.search || '')).toLowerCase();
+        const match = haystack.includes(term);
+        link.classList.toggle('as-hidden', !match);
+        if (match) visibleCount++;
+      });
+      if (emptyMsg) emptyMsg.classList.toggle('as-hidden', visibleCount > 0);
+    });
+  }
+
+  const quotes = [
+    '“Think boldly. Play brilliantly. Shine infinitely.”',
+    '“Every move is a new possibility.”',
+    '“Stay curious. Calculate carefully. Keep improving.”',
+    '“A great game begins with a thoughtful move.”'
+  ];
+  let quoteIndex = 0;
+  const quoteBtn = root.querySelector('#as-quote-btn');
+  if (quoteBtn) {
+    quoteBtn.addEventListener('click', function () {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      const target = root.querySelector('#as-quote');
+      if (target) target.textContent = quotes[quoteIndex];
+    });
+  }
+
+  const copyBtn = root.querySelector('#as-copy-btn');
+  const inviteInput = root.querySelector('#as-invite-url');
+  if (inviteInput) {
+    inviteInput.addEventListener('click', function () { this.select(); });
+  }
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async function () {
+      const url = 'https://www.chess.com/club/alcyoneus-supercluster/join';
+      const toast = root.querySelector('#as-toast');
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(url);
+        } else if (inviteInput) {
+          inviteInput.select();
+          document.execCommand('copy');
+        }
+        if (toast) toast.textContent = 'Invite link copied successfully!';
+      } catch (error) {
+        if (toast) toast.textContent = 'Select and copy the link box above.';
+      }
+    });
+  }
+
+  // Birthday Book with public live sync, Chess.com API lookup & countdown timer
+  const defaultAvatar = 'https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Messier_Sidebars/php7e3edp76cn231jFJsvq.png';
+  const bdayForm = root.querySelector('#as-bday-form');
+  const bdayUserInput = root.querySelector('#as-bday-user');
+  const bdayDateInput = root.querySelector('#as-bday-date');
+  const bdaySubmitBtn = root.querySelector('#as-bday-submit');
+  const bdayStatus = root.querySelector('#as-bday-status');
+  const bdayList = root.querySelector('#as-bday-list');
+  const bdayEmpty = root.querySelector('#as-bday-empty');
+
+  const fallbackEntry = {
+    id: 'elitebacon09',
+    username: 'elitebacon09',
+    displayName: 'elitebacon09',
+    avatar: defaultAvatar,
+    url: 'https://www.chess.com/member/elitebacon09',
+    monthDay: '12-15',
+    dateLabel: 'Dec 15',
+    updatedAt: 0
+  };
+
+  let birthdays = [fallbackEntry];
+  let db = null;
+  let authUser = null;
+  let publicBirthdaysCol = null;
+  // Track entries created in the current browser session/user as a backup ownership check
+  const localOwnedIds = new Set();
+  // Track entries explicitly removed by this user so they don't reappear in view
+  const dismissedIds = new Set();
+  let hasSyncedPublicBoard = false;
+  function isEntryOwnedByCurrentUser(entry) {
+    if (!entry) return false;
+    if (localOwnedIds.has(entry.id)) return true;
+    if (authUser && entry.addedBy && entry.addedBy === authUser.uid) return true;
+    return false;
+  }
+
+  // Extract MM-DD and readable month/day regardless of birth year entered
+  function parseMonthDay(dateStr) {
+    const parts = (dateStr || '').split('-');
+    if (parts.length < 3) return null;
+    const month = Number(parts[1]);
+    const day = Number(parts[2]);
+    if (!month || !day || month < 1 || month > 12 || day < 1 || day > 31) return null;
+    const mm = String(month).padStart(2, '0');
+    const dd = String(day).padStart(2, '0');
+    const sample = new Date(Date.UTC(2026, month - 1, day));
+    const dateLabel = sample.toLocaleDateString([], { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    return { monthDay: mm + '-' + dd, dateLabel: dateLabel };
+  }
+
+  // Compute next occurrence from current local time
+  function getCountdownText(monthDay, now) {
+    const parts = monthDay.split('-');
+    const m = Number(parts[0]) - 1;
+    const d = Number(parts[1]);
+    let target = new Date(now.getFullYear(), m, d, 0, 0, 0, 0);
+    const diffMs = target.getTime() - now.getTime();
+    if (diffMs < -86400000) {
+      target = new Date(now.getFullYear() + 1, m, d, 0, 0, 0, 0);
+    } else if (diffMs <= 0 && diffMs > -86400000) {
+      return '🎉 Birthday Today!';
+    }
+    const remaining = Math.max(0, target.getTime() - now.getTime());
+    const totalSec = Math.floor(remaining / 1000);
+    const days = Math.floor(totalSec / 86400);
+    const hours = Math.floor((totalSec % 86400) / 3600);
+    const mins = Math.floor((totalSec % 3600) / 60);
+    const secs = totalSec % 60;
+    const pad = function (n) { return String(n).padStart(2, '0'); };
+    return days + 'd ' + pad(hours) + 'h ' + pad(mins) + 'm ' + pad(secs) + 's left';
+  }
+
+  // Fetch live player data from Chess.com public API
+  async function fetchChessComProfile(rawUsername) {
+    const clean = rawUsername.trim().replace(/^@+/, '').toLowerCase();
+    if (!clean) throw new Error('Enter a Chess.com username.');
+    const res = await fetch('https://api.chess.com/pub/player/' + encodeURIComponent(clean));
+    if (!res.ok) {
+      throw new Error('Chess.com user "' + clean + '" not found.');
+    }
+    const data = await res.json();
+    return {
+      id: data.username ? data.username.toLowerCase() : clean,
+      username: data.username || clean,
+      displayName: data.name ? (data.name + ' (@' + (data.username || clean) + ')') : ('@' + (data.username || clean)),
+      avatar: data.avatar || defaultAvatar,
+      url: data.url || ('https://www.chess.com/member/' + encodeURIComponent(clean))
+    };
+  }
+
+  function renderBirthdays() {
+    const countBadge = root.querySelector('#as-bday-count');
+    if (countBadge) {
+      countBadge.textContent = birthdays.length + (birthdays.length === 1 ? ' SAVED' : ' SAVED');
+    }
+    if (!bdayList) return;
+    if (!birthdays.length) {
+      bdayList.innerHTML = '';
+      if (bdayEmpty) bdayEmpty.classList.remove('as-hidden');
+      return;
+    }
+    if (bdayEmpty) bdayEmpty.classList.add('as-hidden');
+    const now = new Date();
+    bdayList.innerHTML = birthdays.map(function (entry) {
+      const countdown = getCountdownText(entry.monthDay, now);
+      const canDelete = isEntryOwnedByCurrentUser(entry);
+      const actionBtn = canDelete
+        ? '<button class="as-bday-del" type="button" data-bday-remove="' + entry.id + '" title="Remove your birthday">✕</button>'
+        : '<span class="as-sub" title="Only the member who saved this can remove it">LOCKED</span>';
+      return (
+        '<div class="as-bday-item" role="listitem" data-bday-id="' + entry.id + '">' +
+          '<img class="as-bday-avatar" src="' + entry.avatar + '" alt="' + entry.username + ' avatar" onerror="this.src=\'' + defaultAvatar + '\'" />' +
+          '<div class="as-bday-meta">' +
+            '<a class="as-bday-user" href="' + entry.url + '" target="_blank" rel="noopener">' + entry.displayName + '</a>' +
+            '<div class="as-bday-sub">Birthday: ' + entry.dateLabel + '</div>' +
+            '<div class="as-bday-timer" data-bday-timer="' + entry.monthDay + '">' + countdown + '</div>' +
+          '</div>' +
+          actionBtn +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  function tickBirthdayTimers() {
+    const now = new Date();
+    root.querySelectorAll('[data-bday-timer]').forEach(function (el) {
+      el.textContent = getCountdownText(el.getAttribute('data-bday-timer'), now);
+    });
+  }
+
+  // Initialize public shared storage when environment config is available
+  async function initPublicBirthdayBook() {
+    if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+      fetchChessComProfile('elitebacon09').then(function (profile) {
+        birthdays = birthdays.map(function (b) {
+          return b.id === 'elitebacon09' ? Object.assign({}, b, profile) : b;
+        });
+        renderBirthdays();
+      }).catch(function () {
+        renderBirthdays();
+      });
+      return;
+    }
+
+    try {
+      const appId = typeof __app_id !== 'undefined' ? __app_id : 'alcyoneus-supercluster';
+      const firebaseConfig = typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config;
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      db = getFirestore(app);
+
+      if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+        await signInWithCustomToken(auth, __initial_auth_token);
+      } else {
+        await signInAnonymously(auth);
+      }
+      authUser = auth.currentUser;
+      if (!authUser) return;
+
+      publicBirthdaysCol = collection(db, 'artifacts', appId, 'public', 'data', 'club_birthdays');
+
+      onSnapshot(
+        publicBirthdaysCol,
+        async function (snap) {
+          const rows = [];
+          snap.forEach(function (docSnap) {
+            const d = docSnap.data() || {};
+            if (d.username && d.monthDay) {
+              rows.push({
+                id: docSnap.id,
+                username: d.username,
+                displayName: d.displayName || ('@' + d.username),
+                avatar: d.avatar || defaultAvatar,
+                url: d.url || ('https://www.chess.com/member/' + encodeURIComponent(d.username)),
+                monthDay: d.monthDay,
+                dateLabel: d.dateLabel || d.monthDay,
+                updatedAt: d.updatedAt || 0,
+                addedBy: d.addedBy || null
+              });
+            }
+          });
+          rows.sort(function (a, b) { return (b.updatedAt || 0) - (a.updatedAt || 0); });
+
+          hasSyncedPublicBoard = true;
+          const visibleRows = rows.filter(function (item) { return !dismissedIds.has(item.id); });
+
+          birthdays = visibleRows;
+          renderBirthdays();
+        },
+        function (err) {
+          if (bdayStatus) bdayStatus.textContent = 'Live sync error: ' + (err && err.message ? err.message : 'Unable to read public board.');
+          renderBirthdays();
+        }
+      );
+    } catch (err) {
+      if (bdayStatus) bdayStatus.textContent = 'Using local view (' + (err && err.message ? err.message : 'offline') + ').';
+      renderBirthdays();
+    }
+  }
+
+  if (bdayForm) {
+    bdayForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const parsed = parseMonthDay(bdayDateInput ? bdayDateInput.value : '');
+      if (!parsed) {
+        if (bdayStatus) bdayStatus.textContent = 'Please select a valid date.';
+        return;
+      }
+      if (bdaySubmitBtn) {
+        bdaySubmitBtn.disabled = true;
+        bdaySubmitBtn.textContent = 'Fetching Profile…';
+      }
+      if (bdayStatus) bdayStatus.textContent = 'Checking Chess.com profile…';
+      try {
+        const profile = await fetchChessComProfile(bdayUserInput ? bdayUserInput.value : '');
+
+        // Anti-duplicate check: prevent saving the same Chess.com user more than once
+        const duplicate = birthdays.find(function (item) {
+          return item.id === profile.id || (item.username && item.username.toLowerCase() === profile.username.toLowerCase());
+        });
+        if (duplicate) {
+          if (bdayStatus) {
+            bdayStatus.textContent = '@' + profile.username + ' is already in the Birthday Book (' + duplicate.dateLabel + '). Duplicates are blocked.';
+          }
+          return;
+        }
+
+        const newEntry = {
+          id: profile.id,
+          username: profile.username,
+          displayName: profile.displayName,
+          avatar: profile.avatar,
+          url: profile.url,
+          monthDay: parsed.monthDay,
+          dateLabel: parsed.dateLabel,
+          updatedAt: Date.now(),
+          addedBy: authUser ? authUser.uid : 'local-session'
+        };
+
+        dismissedIds.delete(newEntry.id);
+        localOwnedIds.add(newEntry.id);
+
+        if (publicBirthdaysCol && authUser) {
+          await setDoc(doc(publicBirthdaysCol, newEntry.id), newEntry);
+        } else {
+          birthdays.unshift(newEntry);
+          renderBirthdays();
+        }
+
+        if (bdayUserInput) bdayUserInput.value = '';
+        if (bdayStatus) bdayStatus.textContent = 'Saved ' + profile.username + "'s birthday (" + parsed.dateLabel + ') to the public book!';
+      } catch (err) {
+        if (bdayStatus) bdayStatus.textContent = err && err.message ? err.message : 'Could not load Chess.com profile.';
+      } finally {
+        if (bdaySubmitBtn) {
+          bdaySubmitBtn.disabled = false;
+          bdaySubmitBtn.textContent = 'Save Birthday';
+        }
+      }
+    });
+  }
+
+  if (bdayList) {
+    bdayList.addEventListener('click', async function (e) {
+      const btn = e.target.closest('[data-bday-remove]');
+      if (!btn) return;
+      const removeId = btn.getAttribute('data-bday-remove');
+      const targetEntry = birthdays.find(function (item) { return item.id === removeId; });
+      if (!isEntryOwnedByCurrentUser(targetEntry)) {
+        if (bdayStatus) bdayStatus.textContent = 'You can only remove birthdays that you saved.';
+        return;
+      }
+
+      if (publicBirthdaysCol && authUser) {
+        try {
+          dismissedIds.add(removeId);
+          birthdays = birthdays.filter(function (item) { return item.id !== removeId; });
+          renderBirthdays();
+          await deleteDoc(doc(publicBirthdaysCol, removeId));
+          localOwnedIds.delete(removeId);
+          if (bdayStatus) bdayStatus.textContent = 'Removed your birthday entry.';
+        } catch (err) {
+          if (bdayStatus) bdayStatus.textContent = 'Could not remove entry.';
+        }
+      } else {
+        dismissedIds.add(removeId);
+        birthdays = birthdays.filter(function (item) { return item.id !== removeId; });
+        localOwnedIds.delete(removeId);
+        renderBirthdays();
+        if (bdayStatus) bdayStatus.textContent = 'Removed your birthday entry.';
+      }
+    });
+  }
+
+  renderBirthdays();
+  initPublicBirthdayBook();
+  window.setInterval(tickBirthdayTimers, 1000);
+})();
+</script>
